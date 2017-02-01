@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="POJOS.C_Movimiento" table="movimientos">
+      <composite-id>
+          <key-property name="fecha" />
+          <key-property name="hora" />
+          <key-many-to-one name="cuenta" class="POJOS.C_Cuenta" />
+      </composite-id>
+      <many-to-one name="cliente" class="POJOS.C_Cliente" />
+      <property name="operacion" />
+      <property name="importe" />
+  </class>
+</hibernate-mapping>

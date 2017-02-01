@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    
+    <class name="POJOS.C_Cuenta" table="cuentas" >
+        <id name="numero" />
+        <property name="sucursal" />
+        <set name="clientes" table="cuentas_clientes" cascade="save-update" > 
+            <key column="cuenta" />
+            <many-to-many column="cliente" class="POJOS.C_Cliente"  />
+        </set>
+        
+        <joined-subclass name="POJOS.C_CuentaCorriente" table="cuentaCorriente" >
+            <key column="numero"/>
+            <!--property name="operacion" -->
+            <property name="saldoActual" />
+        </joined-subclass>
+        
+        <joined-subclass name="POJOS.C_CuentaPlazo" table="cuentaPlazo" >
+            <key column="numero" />
+            <property name="intereses" />
+            <property name="fechaVencimiento" />
+            <property name="depositoPlazo" />
+        </joined-subclass>
+        
+    </class>
+    
+</hibernate-mapping>

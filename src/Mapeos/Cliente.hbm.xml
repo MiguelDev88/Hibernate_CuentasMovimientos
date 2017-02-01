@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="POJOS.C_Cliente" table="clientes" >
+        <id name="dni" />
+        <property name="nombre" />
+        <property name="direccion" />
+        <set name="cuentas" table="cuentas_clientes" inverse="true" cascade="save-update" >
+            <key column="cliente" />
+            <many-to-many column="cuenta" class="POJOS.C_Cuenta"  />
+        </set>
+    </class>
+</hibernate-mapping>
